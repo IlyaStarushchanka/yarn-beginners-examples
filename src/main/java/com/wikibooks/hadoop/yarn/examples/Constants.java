@@ -39,7 +39,7 @@ public class Constants {
 
   public static final String AM_JAR_NAME = "AppMaster.jar";
 
-  public static final String INPUT_FILE = "file:////sandbox.hortonworks.com:8020/tmp/admin/user.profile.tags.us.min.txt";
+  public static final String INPUT_FILE = "hdfs://sandbox.hortonworks.com:8020/tmp/admin/user.profile.tags.us.min.txt";
   public static final String OUTPUT_FILE = "hdfs://sandbox.hortonworks.com:8020/tmp/admin/user.profile.tags.us.min.out.txt";
 
 }

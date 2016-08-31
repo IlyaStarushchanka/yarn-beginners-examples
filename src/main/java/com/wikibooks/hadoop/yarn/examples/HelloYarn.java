@@ -69,7 +69,13 @@ public class HelloYarn {
       List<String> urls = new ArrayList<String>();
 
       Path pt=new Path(Constants.INPUT_FILE);
-      FileSystem fs = FileSystem.get(new Configuration());
+
+      FileSystem fs2 = FileSystem.get(new Configuration());
+      Configuration conf = new Configuration();
+      conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
+      conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
+
+      FileSystem fs = FileSystem.get(new URI("hdfs://sandbox.hortonworks.com:8020"),conf);
       BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
       List<String> lines = new ArrayList<String>();
 
