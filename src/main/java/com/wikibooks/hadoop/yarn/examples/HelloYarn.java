@@ -125,7 +125,12 @@ public class HelloYarn {
       System.out.println("STEP 3 " +totalTopWords.size());
       try{
         Path ptOut=new Path(Constants.OUTPUT_FILE);
-        FileSystem fsOut = FileSystem.get(new Configuration());
+        Configuration conf = new Configuration();
+        conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
+        conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
+
+        FileSystem fsOut = FileSystem.get(new URI("hdfs://sandbox.hortonworks.com:8020"),conf);
+        //FileSystem fsOut = FileSystem.get(new Configuration());
         BufferedWriter brOut = new BufferedWriter(new OutputStreamWriter(fsOut.create(ptOut,true)));
 
         brOut.write(topLine);
