@@ -115,7 +115,7 @@ public class HelloYarn {
           urls.add(m.group());
         }
       }*/
-      for (int i = offset; i <= offset + count; i++){
+      for (int i = offset; i <= offset + count-1; i++){
         String l = lines.get(i);
         Matcher m = p.matcher(l);
         m.matches();
@@ -162,12 +162,13 @@ public class HelloYarn {
         brOut.write(topLine);
         brOut.write("\n");
         System.out.println("STEP 4");
-        for (int i = 0; i < lines.size(); i++) {
+        for (int i = offset; i <= offset + count-1; i++){
+        //for (int i = 0; i < lines.size(); i++) {
           String currentLine = lines.get(i);
           String[] params = currentLine.split("\\s+");
           for (int j = 0; j < params.length; j++) {
             if (j == 1) {
-              List<String> currentTopWords = totalTopWords.get(i);
+              List<String> currentTopWords = totalTopWords.get(i-offset);
 
               for (int k = 0; k < currentTopWords.size(); k++) {
                 brOut.write(currentTopWords.get(k));
