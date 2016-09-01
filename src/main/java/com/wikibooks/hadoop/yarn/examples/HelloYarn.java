@@ -104,7 +104,7 @@ public class HelloYarn {
         count = lines.size() - Math.round(lines.size()/containerCount)*(containerCount - 1);
       }
 
-      offset = lines.size() - Math.round(lines.size()/containerCount)*(tempContainer - 1);
+      offset = Math.round(lines.size()/containerCount)*(tempContainer - 1);
       System.out.println("count = " + count);
       System.out.println("offset = " + offset);
       System.out.println("STEP 1 " + lines.size());
