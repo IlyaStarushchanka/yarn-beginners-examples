@@ -49,8 +49,16 @@ import static java.util.stream.Collectors.toList;
 
 public class HelloYarn {
   private static final long MEGABYTE = 1024L * 1024L;
+  private int containerCount;
+  private int tempContainer;
 
   public HelloYarn() {
+    System.out.println("HelloYarn!");
+  }
+
+  public HelloYarn(int tempContainer, int containerCount) {
+    this.tempContainer = tempContainer;
+    this.containerCount = containerCount;
     System.out.println("HelloYarn!");
   }
 
@@ -89,9 +97,27 @@ public class HelloYarn {
         line=br.readLine();
       }
 
+      int offset, count;
+      if (tempContainer < containerCount){
+        count = Math.round(lines.size()/containerCount);
+      } else {
+        count = lines.size() - Math.round(lines.size()/containerCount)*(containerCount - 1)
+      }
+
+      offset = lines.size() - Math.round(lines.size()/containerCount)*(tempContainer - 1);
+      System.out.println("count = " + count);
+      System.out.println("offset = " + offset);
       System.out.println("STEP 1 " + lines.size());
-      for (String l : lines) {
+      /*for (String l : lines) {
         Matcher m = p.matcher(l);
+        m.matches();
+        while (m.find()) {
+          urls.add(m.group());
+        }
+      }*/
+      for (int i = offset; i <= offset + count; i++){
+        String line = lines[i];
+        Matcher m = p.matcher(line);
         m.matches();
         while (m.find()) {
           urls.add(m.group());
@@ -170,11 +196,12 @@ public class HelloYarn {
   }
 
   public static void main(String[] args) {
-    HelloYarn helloYarn = new HelloYarn();
-    String part = args[0];
-    System.out.println(part);
+    String tempContainer = args[0];
+    System.out.println(tempContainer);
     String containerCount = args[1];
     System.out.println(containerCount);
+    HelloYarn helloYarn = new HelloYarn(Integer.valueOf(tempContainer), Integer.valueOf(containerCount));
+
     helloYarn.printMemoryStats();
   }
 }
