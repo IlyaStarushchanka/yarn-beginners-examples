@@ -171,7 +171,8 @@ public class HelloYarn {
 
   public static void main(String[] args) {
     HelloYarn helloYarn = new HelloYarn();
-    String arg = args[1];
+    String arg = args[0];
+    System.out.println(arg);
     helloYarn.printMemoryStats();
   }
 }
