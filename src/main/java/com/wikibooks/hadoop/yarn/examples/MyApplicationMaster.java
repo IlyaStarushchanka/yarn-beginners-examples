@@ -284,7 +284,7 @@ public class MyApplicationMaster {
         Collections.singletonList(
             "$JAVA_HOME/bin/java" +
                 " -Xmx256M" +
-                " com.wikibooks.hadoop.yarn.examples.HelloYarn " + allocatedContainers + "/" + numTotalContainers
+                " com.wikibooks.hadoop.yarn.examples.HelloYarn " + allocatedContainers + "/" + numTotalContainers +
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr"
         )
