@@ -101,7 +101,7 @@ public class HelloYarn {
       if (tempContainer < containerCount){
         count = Math.round(lines.size()/containerCount);
       } else {
-        count = lines.size() - Math.round(lines.size()/containerCount)*(containerCount - 1)
+        count = lines.size() - Math.round(lines.size()/containerCount)*(containerCount - 1);
       }
 
       offset = lines.size() - Math.round(lines.size()/containerCount)*(tempContainer - 1);
