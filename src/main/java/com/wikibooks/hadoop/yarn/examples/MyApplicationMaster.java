@@ -222,7 +222,7 @@ public class MyApplicationMaster {
       for (Container container : response.getAllocatedContainers()) {
         allocatedContainers++;
 
-        ContainerLaunchContext appContainer = createContainerLaunchContext(appMasterJar, containerEnv);
+        ContainerLaunchContext appContainer = createContainerLaunchContext(appMasterJar, containerEnv, allocatedContainers);
         LOG.info("Launching container " + allocatedContainers);
 
         nmClient.startContainer(container, appContainer);
@@ -274,7 +274,7 @@ public class MyApplicationMaster {
    * @return
    */
   private ContainerLaunchContext createContainerLaunchContext(LocalResource appMasterJar,
-            Map<String, String> containerEnv) {
+            Map<String, String> containerEnv, int allocatedContainers) {
     ContainerLaunchContext appContainer =
         Records.newRecord(ContainerLaunchContext.class);
     appContainer.setLocalResources(
@@ -284,7 +284,7 @@ public class MyApplicationMaster {
         Collections.singletonList(
             "$JAVA_HOME/bin/java" +
                 " -Xmx256M" +
-                " com.wikibooks.hadoop.yarn.examples.HelloYarn" +
+                " com.wikibooks.hadoop.yarn.examples.HelloYarn " + allocatedContainers + "/" + numTotalContainers
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr"
         )
