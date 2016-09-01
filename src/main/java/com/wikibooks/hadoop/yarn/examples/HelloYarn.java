@@ -116,8 +116,8 @@ public class HelloYarn {
         }
       }*/
       for (int i = offset; i <= offset + count; i++){
-        String line = lines[i];
-        Matcher m = p.matcher(line);
+        String l = lines.get(i);
+        Matcher m = p.matcher(l);
         m.matches();
         while (m.find()) {
           urls.add(m.group());
