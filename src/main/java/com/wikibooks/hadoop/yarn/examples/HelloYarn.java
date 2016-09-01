@@ -171,8 +171,10 @@ public class HelloYarn {
 
   public static void main(String[] args) {
     HelloYarn helloYarn = new HelloYarn();
-    String arg = args[0];
-    System.out.println(arg);
+    String part = args[0];
+    System.out.println(part);
+    String containerCount = args[1];
+    System.out.println(containerCount);
     helloYarn.printMemoryStats();
   }
 }
