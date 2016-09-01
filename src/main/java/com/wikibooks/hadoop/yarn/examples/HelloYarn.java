@@ -150,7 +150,7 @@ public class HelloYarn {
 
       System.out.println("STEP 3 " +totalTopWords.size());
       try{
-        Path ptOut=new Path(Constants.OUTPUT_FILE);
+        Path ptOut=new Path(Constants.OUTPUT_FILE + "part" + tempContainer + ".txt");
         //Configuration conf = new Configuration();
         conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
         conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
